@@ -25,6 +25,21 @@ package LS1_Iterations;
 public class BinaryGap {
     public static int solution(int N){
         int result = 0;
+        String binaryStr = Integer.toBinaryString(N);
+        int count = 0;
+        for(int i =1; i<binaryStr.length(); i++){
+            if(binaryStr.charAt(i-1) >= binaryStr.charAt(i) && binaryStr.charAt(i) != 49){ // 0 개수 카운트
+                count++;
+            }else if(binaryStr.charAt(i-1) < binaryStr.charAt(i)){
+                if(result < count) result = count;
+                count = 0;
+            }
+        }
+
+        return result;
+    }
+    /*public static int solution(int N){
+        int result = 0;
         String str = Integer.toBinaryString(N);
         StringBuffer sb = new StringBuffer(str);
         System.out.println(N+" to binary str : "+str);
@@ -45,7 +60,7 @@ public class BinaryGap {
             }
         }
         return result;
-    }
+    }*/
 
     public static void main(String[] args) {
         System.out.println("input: 9 => "+solution(9)+", expect 2");
